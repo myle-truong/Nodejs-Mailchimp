@@ -21,10 +21,22 @@ app.post('/', (req, res) => {
     let lastName = req.body.lName;
     let email = req.body.email;
     //console.log(firstName, lastName, email);
+    let data = {
+        members: [{
+            email_adress: email,
+            status: 'subscribed'
+        }]
+    }
 
+    let jsonData = JSON.stringify(data);
     let option = {
         url: 'https://us4.api.mailchimp.com/3.0/lists/b8ecfbaff6',
         method: 'POST',
+        headers: {
+            Authorization: 'hanatruong c4c51ccd3c52aef2728a3ae493f51a10-us4'
+        },
+        body: jsonData
+
     };
 
     request(option, (error, response, body) => {
